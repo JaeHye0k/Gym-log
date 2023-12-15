@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./app.css" />
+    <title>Meta-log</title>
+  </head>
+  <body class="light">
+    <header>
+      <div>Blog Name</div>
+      <div id="dark-light-toggle">☀️</div>
+    </header>
+    <main>
+      <div class="categories"></div>
+      <div class="center"></div>
+      <div class="pro"></div>
+    </main>
+    <script>
+      const body = document.querySelector("body");
+      const dark_light_toggle = document.querySelector("#dark-light-toggle");
+      // 다크모드 - 라이트 모드
+      dark_light_toggle.addEventListener("click", (event) => {
+        if (body.classList.value === "light") {
+          body.classList.remove("light");
+          body.classList.add("dark");
+          dark_light_toggle.textContent = "🌙";
+          document.documentElement.style.setProperty("color-scheme", "dark");
+        } else {
+          body.classList.remove("dark");
+          body.classList.add("light");
+          dark_light_toggle.textContent = "☀️";
+          document.documentElement.style.setProperty("color-scheme", "dark");
+        }
+      });
+    </script>
+  </body>
+</html>
