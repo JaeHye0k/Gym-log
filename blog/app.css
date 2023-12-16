@@ -2,12 +2,24 @@
   box-sizing: border-box;
 }
 
+a {
+  all: unset;
+  cursor: pointer;
+}
+
 body {
   margin: 0;
   padding: 0;
+  color: hsl(0, 0%, 9%);
+  background-color: hsl(0, 0%, 97.3%);
 }
-
 header {
+  height: 3rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+header nav {
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,15 +32,18 @@ header {
 }
 
 main {
+  margin: 0 auto;
+  top: 3rem;
+  padding: 2rem 1rem;
   max-width: 1200px;
   width: 100%;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
-}
-
-#dark-light-toggle:hover {
-  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  height: 2000px; /*임시 높이 */
 }
 
 .dark {
@@ -39,4 +54,40 @@ main {
 .light {
   color: rgb(23, 23, 23);
   background-color: rgb(248, 248, 248);
+}
+/* 카테고리 */
+.main-category {
+  grid-column: span 2 / span 2;
+}
+.category-list {
+  list-style: none;
+  padding: 0;
+}
+.category-title {
+  padding-bottom: 0.75rem;
+}
+.category-list li {
+  padding: 0.25rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: 0.75rem;
+}
+.category-list a {
+  color: hsl(0, 0%, 52.3%);
+}
+.category-list a:hover li {
+  background-color: hsl(0, 0%, 93%);
+}
+.category-list a[data-selected="true"] li {
+  color: hsl(0, 0%, 9%);
+  background-color: hsl(0, 0%, 93%);
+}
+/* 중앙 */
+.main-mid {
+  grid-column: span 7 / span 7;
+}
+.main-profile {
+  grid-column: span 3 / span 3;
+}
+#dark-light-toggle:hover {
+  cursor: pointer;
 }

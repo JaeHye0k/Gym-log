@@ -6,33 +6,50 @@
     <link rel="stylesheet" href="./app.css" />
     <title>Meta-log</title>
   </head>
-  <body class="light">
+  <body data-theme="light">
     <header>
-      <div>Blog Name</div>
-      <div id="dark-light-toggle">☀️</div>
+      <nav>
+        <a href=""><div>Meta-log</div></a>
+        <div id="dark-light-toggle">☀️</div>
+      </nav>
     </header>
     <main>
-      <div class="categories"></div>
-      <div class="center"></div>
-      <div class="pro"></div>
+      <div class="main-category">
+        <div class="category-title">카테고리</div>
+        <ul class="category-list">
+          <a data-selected="false"><li>아이템</li></a>
+          <a data-selected="false"><li>아이템</li></a>
+          <a data-selected="false"><li>아이템</li></a>
+          <a data-selected="false"><li>아이템</li></a>
+          <a data-selected="false"><li>아이템</li></a>
+        </ul>
+      </div>
+      <div class="main-mid"></div>
+      <div class="main-profile"></div>
     </main>
     <script>
+      // 다크모드 - 라이트 모드
       const body = document.querySelector("body");
       const dark_light_toggle = document.querySelector("#dark-light-toggle");
-      // 다크모드 - 라이트 모드
       dark_light_toggle.addEventListener("click", (event) => {
-        if (body.classList.value === "light") {
-          body.classList.remove("light");
-          body.classList.add("dark");
+        if (body.dataset.theme === "light") {
+          body.dataset.theme = "dark";
           dark_light_toggle.textContent = "🌙";
           document.documentElement.style.setProperty("color-scheme", "dark");
         } else {
-          body.classList.remove("dark");
-          body.classList.add("light");
+          body.dataset.theme = "light";
           dark_light_toggle.textContent = "☀️";
-          document.documentElement.style.setProperty("color-scheme", "dark");
+          document.documentElement.style.setProperty("color-scheme", "light");
         }
       });
+      // 선택된 카테고리
+      let list = document.querySelector(".category-list").children;
+      for (let item of list) {
+        item.addEventListener("click", (event) => {
+          if (item.dataset.selected === "false") item.dataset.selected = "true";
+          else item.dataset.selected = "false";
+        });
+      }
     </script>
   </body>
 </html>

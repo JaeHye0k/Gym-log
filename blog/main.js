@@ -13,11 +13,17 @@ const app = http.createServer((request, response) => {
     <link rel="stylesheet" href="./app.css" />
     <title>Meta-log</title>
   </head>
-  <body>
+  <body class="light">
     <header>
       <div>Blog Name</div>
-      <div>🌙☀️</div>
+      <div id="dark-light-toggle">☀️</div>
     </header>
+    <main>
+      <div class="categories"></div>
+      <div class="center"></div>
+      <div class="profile"></div>
+      <script src="./code.js"></script>
+    </main>
   </body>
 </html>
   `;
