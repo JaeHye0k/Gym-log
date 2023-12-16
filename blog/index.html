@@ -8,23 +8,37 @@
   </head>
   <body data-theme="light">
     <header>
-      <nav>
+      <div class="header-container">
         <a href=""><div>Meta-log</div></a>
-        <div id="dark-light-toggle">☀️</div>
-      </nav>
+        <nav class="toggle-container">
+          <div id="dark-light-toggle">☀️</div>
+          <div id="english-korean-toggle">한국어</div>
+        </nav>
+      </div>
     </header>
     <main>
       <div class="main-category">
-        <div class="category-title">카테고리</div>
-        <ul class="category-list">
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
-        </ul>
+        <div class="category-container">
+          <div class="category-title">카테고리</div>
+          <ul class="category-list">
+            <a data-selected="false"><li>아이템</li></a>
+            <a data-selected="false"><li>아이템</li></a>
+            <a data-selected="false"><li>아이템</li></a>
+            <a data-selected="false"><li>아이템</li></a>
+            <a data-selected="false"><li>아이템</li></a>
+          </ul>
+        </div>
       </div>
-      <div class="main-mid"></div>
+      <div class="main-mid">
+        <div class="search-box">
+          <div>검색</div>
+          <input type="text" placeholder="키워드를 입력하세요" />
+        </div>
+        <div class="posts-box">
+          <div class=""></div>
+          <div>글1</div>
+        </div>
+      </div>
       <div class="main-profile"></div>
     </main>
     <script>
@@ -34,13 +48,23 @@
       dark_light_toggle.addEventListener("click", (event) => {
         if (body.dataset.theme === "light") {
           body.dataset.theme = "dark";
+          body.classList.add("dark");
+          body.classList.remove("light");
           dark_light_toggle.textContent = "🌙";
           document.documentElement.style.setProperty("color-scheme", "dark");
         } else {
           body.dataset.theme = "light";
+          body.classList.add("light");
+          body.classList.remove("dark");
           dark_light_toggle.textContent = "☀️";
           document.documentElement.style.setProperty("color-scheme", "light");
         }
+      });
+      // 영어 - 한국어
+      const english_korean_toggle = document.querySelector("#english-korean-toggle");
+      english_korean_toggle.addEventListener("click", (event) => {
+        if (english_korean_toggle.innerHTML === "한국어") english_korean_toggle.innerHTML = "English";
+        else english_korean_toggle.innerHTML = "한국어";
       });
       // 선택된 카테고리
       let list = document.querySelector(".category-list").children;

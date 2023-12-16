@@ -13,12 +13,13 @@ body {
   color: hsl(0, 0%, 9%);
   background-color: hsl(0, 0%, 97.3%);
 }
+/* 헤더 */
 header {
   height: 3rem;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
-header nav {
+header .header-container {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -31,6 +32,28 @@ header nav {
   transform: translate(-50%, 0);
 }
 
+.toggle-container {
+  display: flex;
+  gap: 0.75rem;
+}
+/* 테마 변경 */
+.dark {
+  color: rgb(237, 237, 237);
+  background-color: rgb(28, 28, 28);
+}
+.light {
+  color: rgb(23, 23, 23);
+  background-color: rgb(248, 248, 248);
+}
+#dark-light-toggle:hover {
+  cursor: pointer;
+}
+
+#english-korean-toggle:hover {
+  cursor: pointer;
+}
+
+/* 가운데 영역 */
 main {
   margin: 0 auto;
   top: 3rem;
@@ -45,19 +68,26 @@ main {
   gap: 1.5rem;
   height: 2000px; /*임시 높이 */
 }
-
-.dark {
-  color: rgb(237, 237, 237);
-  background-color: rgb(28, 28, 28);
+main .search-box {
+  margin-bottom: 2rem;
 }
-
-.light {
-  color: rgb(23, 23, 23);
-  background-color: rgb(248, 248, 248);
+main .search-box input {
+  border: none;
+  border-radius: 1rem;
+  background-color: hsl(0, 0%, 93%);
+  width: 100%;
+  padding: 0.5rem 1.25rem;
+  outline-style: none;
 }
+/* 언어 변경 */
+
 /* 카테고리 */
 .main-category {
   grid-column: span 2 / span 2;
+}
+.category-container {
+  position: sticky;
+  top: 1rem;
 }
 .category-list {
   list-style: none;
@@ -87,7 +117,4 @@ main {
 }
 .main-profile {
   grid-column: span 3 / span 3;
-}
-#dark-light-toggle:hover {
-  cursor: pointer;
 }
