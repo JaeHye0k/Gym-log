@@ -37,10 +37,18 @@
         <div class="posts-box">
           <a>
             <article>
-              <div class="post-title">제목</div>
+              <h2 class="post-title">제목</h2>
               <div class="post-date">날짜</div>
-              <div class="post-summary">요약</div>
-              <div class="post-tag">태그</div>
+              <p class="post-summary">요약</p>
+              <span class="post-tag">태그</span>
+            </article>
+          </a>
+          <a>
+            <article>
+              <h2 class="post-title">제목</h2>
+              <div class="post-date">날짜</div>
+              <p class="post-summary">요약</p>
+              <span class="post-tag">태그</span>
             </article>
           </a>
         </div>
@@ -74,12 +82,12 @@
       });
       // 선택된 카테고리
       let list = document.querySelector(".category-list").children;
-      for (let item of list) {
-        item.addEventListener("click", (event) => {
-          if (item.dataset.selected === "false") item.dataset.selected = "true";
-          else item.dataset.selected = "false";
-        });
-      }
+      [...list].forEach((e) =>
+        e.addEventListener("click", (event) => {
+          //[...list].forEach((e) => (e.dataset.selected = "false"));
+          e.dataset.selected = JSON.parse(e.dataset.selected) ? "false" : "true";
+        })
+      );
     </script>
   </body>
 </html>
