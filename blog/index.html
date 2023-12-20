@@ -84,7 +84,10 @@
       let list = document.querySelector(".category-list").children;
       [...list].forEach((e) =>
         e.addEventListener("click", (event) => {
-          //[...list].forEach((e) => (e.dataset.selected = "false"));
+          // prettier-ignore
+          [...list].filter((e) => e.dataset.selected === "true").forEach((e) => {
+              if (e !== event.currentTarget) e.dataset.selected = "false";
+            });
           e.dataset.selected = JSON.parse(e.dataset.selected) ? "false" : "true";
         })
       );
