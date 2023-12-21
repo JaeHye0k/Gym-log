@@ -19,6 +19,8 @@ body {
   padding: 0;
   color: hsl(0, 0%, 9%);
   background-color: hsl(0, 0%, 97.3%);
+  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 /* 헤더 */
 header {
@@ -43,11 +45,19 @@ header .header-container {
   display: flex;
   gap: 0.75rem;
 }
+
 /* 테마 변경 */
 .dark {
   color: rgb(237, 237, 237);
   background-color: rgb(28, 28, 28);
 }
+.dark .posts-box article {
+  background-color: rgb(40, 40, 40);
+}
+.dark .posts-box .post-tag {
+  background-color: rgb(46, 46, 46);
+}
+
 .light {
   color: rgb(23, 23, 23);
   background-color: rgb(248, 248, 248);
@@ -60,7 +70,7 @@ header .header-container {
   cursor: pointer;
 }
 
-/* 가운데 영역 */
+/* 포스트 영역 */
 .main-mid {
   grid-column: span 7 / span 7;
 }
@@ -79,10 +89,15 @@ main {
   gap: 1.5rem;
   height: 2000px; /*임시 높이 */
 }
+
+/* 검색창 */
 main .search-box {
   margin-bottom: 2rem;
 }
-main .search-box input {
+main .search-title {
+  margin-bottom: 1rem;
+}
+main .search-box .search-box {
   border: none;
   border-radius: 1rem;
   background-color: hsl(0, 0%, 93%);
@@ -113,10 +128,12 @@ main .post-date {
 main .post-summary {
   font-size: 1rem;
   margin: 1rem 0;
+  color: rgb(140, 140, 140);
 }
 main .post-tag {
   font-size: 0.75rem;
-  padding: 5px;
+  padding: 0.25rem 0.5rem;
+  color: rgb(126, 126, 126);
   background-color: hsl(0, 0%, 93%);
   border-radius: 1rem;
 }
@@ -151,8 +168,8 @@ main .post-tag {
   color: hsl(0, 0%, 9%);
   background-color: hsl(0, 0%, 93%);
 }
-/* 중앙 */
 
+/* 프로필 */
 .main-profile {
   grid-column: span 3 / span 3;
 }

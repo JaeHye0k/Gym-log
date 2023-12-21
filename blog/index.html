@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./app.css" />
     <title>Meta-log</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap" rel="stylesheet" />
   </head>
   <body data-theme="light">
     <header>
@@ -31,8 +34,8 @@
       </div>
       <div class="main-mid">
         <div class="search-box">
-          <div>검색</div>
-          <input type="text" placeholder="태그를 입력하세요" />
+          <div class="search-title">검색</div>
+          <input class="search-box" type="text" placeholder="태그를 입력하세요" />
         </div>
         <div class="posts-box">
           <a>
@@ -80,7 +83,7 @@
         if (english_korean_toggle.innerHTML === "한국어") english_korean_toggle.innerHTML = "English";
         else english_korean_toggle.innerHTML = "한국어";
       });
-      // 선택된 카테고리
+      // 카테고리 클릭시
       let list = document.querySelector(".category-list").children;
       [...list].forEach((e) =>
         e.addEventListener("click", (event) => {
