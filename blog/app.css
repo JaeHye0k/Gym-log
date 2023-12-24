@@ -170,6 +170,32 @@ main .post-tag {
 }
 
 /* 프로필 */
-.main-profile {
+.main-bio {
   grid-column: span 3 / span 3;
+}
+.main-bio .profile-title {
+  margin-bottom: 1rem;
+}
+.main-bio .profile-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  margin-bottom: 2.25rem;
+}
+.main-bio .profile-content > div {
+  text-align: center;
+}
+.main-bio .name {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-style: italic;
+  font-weight: 700;
+}
+.main-bio .role {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: hsl(0, 0%, 43.5%);
 }
