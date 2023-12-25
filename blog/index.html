@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meta-log</title>
-    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./app.css" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap" rel="stylesheet" />
@@ -37,23 +37,26 @@
         <div class="search-container">
           <span class="blind">검색</span>
           <div class="search-title">검색</div>
-          <input class="search-box" type="text" placeholder="태그를 입력하세요" />
+          <input class="search-box" type="text" placeholder="태그를 입력하세요" onkeypress="handle(event)" />
+          <div class="entered-tags" data-entered="false">
+            <ul class="entered-tag-list"></ul>
+          </div>
         </div>
         <div class="posts-box">
           <a>
-            <article>
+            <article data-filtered="true">
               <h2 class="post-title">제목</h2>
               <div class="post-date">날짜</div>
               <p class="post-summary">요약</p>
-              <span class="post-tag">태그</span>
+              <span class="post-tag">HTML</span>
             </article>
           </a>
           <a>
-            <article>
+            <article data-filtered="true">
               <h2 class="post-title">제목</h2>
               <div class="post-date">날짜</div>
               <p class="post-summary">요약</p>
-              <span class="post-tag">태그</span>
+              <span class="post-tag">CSS</span>
             </article>
           </a>
         </div>
@@ -77,42 +80,36 @@
         </div>
       </div>
     </main>
+    <script src="dynamic_UI.js" type="text/javascript"></script>
     <script>
-      // 다크모드 - 라이트 모드
-      const body = document.querySelector("body");
-      const dark_light_toggle = document.querySelector("#dark-light-toggle");
-      dark_light_toggle.addEventListener("click", (event) => {
-        if (body.dataset.theme === "light") {
-          body.dataset.theme = "dark";
-          body.classList.add("dark");
-          body.classList.remove("light");
-          dark_light_toggle.textContent = "🌙";
-          document.documentElement.style.setProperty("color-scheme", "dark");
-        } else {
-          body.dataset.theme = "light";
-          body.classList.add("light");
-          body.classList.remove("dark");
-          dark_light_toggle.textContent = "☀️";
-          document.documentElement.style.setProperty("color-scheme", "light");
-        }
-      });
-      // 영어 - 한국어
-      const english_korean_toggle = document.querySelector("#english-korean-toggle");
-      english_korean_toggle.addEventListener("click", (event) => {
-        if (english_korean_toggle.innerHTML === "한국어") english_korean_toggle.innerHTML = "English";
-        else english_korean_toggle.innerHTML = "한국어";
-      });
-      // 카테고리 클릭시
-      let list = document.querySelector(".category-list").children;
-      [...list].forEach((e) =>
-        e.addEventListener("click", (event) => {
-          // prettier-ignore
-          [...list].filter((e) => e.dataset.selected === "true").forEach((e) => {
-              if (e !== event.currentTarget) e.dataset.selected = "false";
-            });
-          e.dataset.selected = JSON.parse(e.dataset.selected) ? "false" : "true";
-        })
-      );
+      // // 태그 입력 시
+      // const searchBox = document.querySelector(".search-box");
+      // let allArticle = [...document.querySelector(".posts-box").querySelectorAll("article")];
+      // var tagArr = [];
+      // var tagFilter = [];
+      // function handle(e) {
+      //   let tag = searchBox.value;
+      //   // 입력값이 공백이 아니면서 엔터를 눌렀을 때
+      //   if (tag && e.keyCode === 13) {
+      //     tag = searchBox.value;
+      //     document.querySelector(".entered-tags").dataset.entered = "true";
+      //     // 기입한 태그 생성
+      //     var li = document.createElement("li");
+      //     var span = li.appendChild(document.createElement("span"));
+      //     span.appendChild(document.createTextNode(tag));
+      //     var innerSpan = span.appendChild(document.createElement("span"));
+      //     innerSpan.appendChild(document.createTextNode("x"));
+      //     innerSpan.classList.add("delete-tag");
+      //     document.querySelector(".entered-tag-list").appendChild(li);
+      //     searchBox.value = "";
+      //     tagArr.push(tag);
+      //     filteredArticle = [...document.querySelector(".posts-box").querySelectorAll("article")].filter((v) => tagArr.includes(v.querySelector(".post-tag").innerText));
+      //     allArticle.forEach((v) => {
+      //       if (filteredArticle.includes(v)) v.dataset.filtered = "true";
+      //       else v.dataset.filtered = "false";
+      //     });
+      //   }
+      // }
     </script>
   </body>
 </html>

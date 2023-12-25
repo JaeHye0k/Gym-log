@@ -1,6 +1,8 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
+
+// Read article
 let dataFolder = "./data";
 let article = "";
 fs.readdir(dataFolder, (err, fileList) => {
@@ -21,7 +23,7 @@ const app = http.createServer((request, response) => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meta-log</title>
-    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./app.css" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap" rel="stylesheet" />
@@ -54,7 +56,10 @@ const app = http.createServer((request, response) => {
         <div class="search-container">
           <span class="blind">검색</span>
           <div class="search-title">검색</div>
-          <input class="search-box" type="text" placeholder="태그를 입력하세요" />
+          <input class="search-box" type="text" placeholder="태그를 입력하세요" onkeypress="handle(event)" />
+          <div class="entered-tags" data-entered="false">
+            <ul class="entered-tag-list"></ul>
+          </div>
         </div>
         <div class="posts-box">
           ${article}
@@ -79,7 +84,7 @@ const app = http.createServer((request, response) => {
         </div>
       </div>
     </main>
-    <script src="dynamic_UI.js"></script>
+    <script src="dynamic_UI.js" type="text/javascript"></script>
   </body>
 </html>
     `;
