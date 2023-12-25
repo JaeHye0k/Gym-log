@@ -1,0 +1,8 @@
+<a>
+  <article>
+    <h2 class="post-title">제목3</h2>
+    <div class="post-date">날짜</div>
+    <p class="post-summary">요약</p>
+    <span class="post-tag">태그</span>
+  </article>
+</a>

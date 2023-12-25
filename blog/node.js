@@ -1,6 +1,15 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
+let dataFolder = "./data";
+let article = "";
+fs.readdir(dataFolder, (err, fileList) => {
+  fileList.forEach((v) => {
+    fs.readFile(`${dataFolder}/${v}`, (err, content) => {
+      article += content;
+    });
+  });
+});
 
 const app = http.createServer((request, response) => {
   let _url = request.url;
@@ -48,22 +57,7 @@ const app = http.createServer((request, response) => {
           <input class="search-box" type="text" placeholder="태그를 입력하세요" />
         </div>
         <div class="posts-box">
-          <a>
-            <article>
-              <h2 class="post-title">제목</h2>
-              <div class="post-date">날짜</div>
-              <p class="post-summary">요약</p>
-              <span class="post-tag">태그</span>
-            </article>
-          </a>
-          <a>
-            <article>
-              <h2 class="post-title">제목</h2>
-              <div class="post-date">날짜</div>
-              <p class="post-summary">요약</p>
-              <span class="post-tag">태그</span>
-            </article>
-          </a>
+          ${article}
         </div>
       </div>
       <div class="main-right">
@@ -85,7 +79,7 @@ const app = http.createServer((request, response) => {
         </div>
       </div>
     </main>
-    <script src="main.js"></script>
+    <script src="dynamic_UI.js"></script>
   </body>
 </html>
     `;
