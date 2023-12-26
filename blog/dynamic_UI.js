@@ -42,21 +42,20 @@ let allArticle = [...document.querySelector(".posts-box").querySelectorAll("arti
 var tagArr = [];
 var tagFilter = [];
 function handle(e) {
-  let tag = searchBox.value;
+  let tagName = searchBox.value;
   // 입력값이 공백이 아니면서 엔터를 눌렀을 때
-  if (tag && e.keyCode === 13) {
-    tag = searchBox.value;
+  if (tagName && e.keyCode === 13) {
+    tagName = searchBox.value;
     document.querySelector(".entered-tags").dataset.entered = "true";
     // 기입한 태그 생성
     var li = document.createElement("li");
     var span = li.appendChild(document.createElement("span"));
-    span.appendChild(document.createTextNode(tag));
-    var innerSpan = span.appendChild(document.createElement("span"));
-    innerSpan.appendChild(document.createTextNode("x"));
-    innerSpan.classList.add("delete-tag");
+    span.appendChild(document.createTextNode(tagName));
     document.querySelector(".entered-tag-list").appendChild(li);
+    // 검색 창 비우기
     searchBox.value = "";
-    tagArr.push(tag);
+    // 태그에 해당하는 article만 표시
+    tagArr.push(tagName);
     filteredArticle = [...document.querySelector(".posts-box").querySelectorAll("article")].filter((v) => tagArr.includes(v.querySelector(".post-tag").innerText));
     allArticle.forEach((v) => {
       if (filteredArticle.includes(v)) v.dataset.filtered = "true";
