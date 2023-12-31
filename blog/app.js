@@ -4,15 +4,17 @@ const url = require("url");
 
 // Read article
 let dataFolder = "./data";
-let article = "";
+let articles = [];
 fs.readdir(dataFolder, (err, fileList) => {
   fileList.forEach((v) => {
     fs.readFile(`${dataFolder}/${v}`, (err, content) => {
-      article += content;
+      articles.push(content);
     });
   });
 });
-
+// module.exports = {
+//   articles: articles,
+// };
 const app = http.createServer((request, response) => {
   let _url = request.url;
   if (_url === "/") {
@@ -61,9 +63,9 @@ const app = http.createServer((request, response) => {
             <ul class="entered-tag-list"></ul>
           </div>
         </div>
-        <div class="posts-box">
-          ${article}
-        </div>
+        <ul class="posts-box">
+          ${articles.join("")}
+        </ul>
       </div>
       <div class="main-right">
         <div class="sticky">

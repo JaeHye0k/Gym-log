@@ -1,5 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,500,600,700,800,900);
 
+:root {
+  --gray0: rgb(248, 248, 248);
+  --gray1: rgb(237, 237, 237);
+  --gray2: rgb(140, 140, 140);
+  --gray3: rgb(133, 133, 133);
+  --gray4: rgb(126, 126, 126);
+  --gray5: rgb(46, 46, 46);
+  --gray6: rgb(40, 40, 40);
+  --gray7: rgb(36, 36, 36);
+  --gray8: rgb(28, 28, 28);
+  --gray9: rgb(23, 23, 23);
+
+  --light_box_shadow1: rgba(0, 0, 0, 0.1);
+  --light_box_shadow2: rgba(0, 0, 0, 0.05);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -24,8 +40,8 @@ ul {
 body {
   margin: 0;
   padding: 0;
-  color: hsl(0, 0%, 9%);
-  background-color: hsl(0, 0%, 97.3%);
+  color: var(--gray9);
+  background-color: var(--gray0);
   font-family: "Exo 2", "Roboto", "Noto Sans KR", sans-serif;
 }
 /* 헤더 */
@@ -66,32 +82,32 @@ header .header-container {
   gap: 0.75rem;
 }
 .dark {
-  color: rgb(237, 237, 237);
-  background-color: rgb(28, 28, 28);
+  color: var(--gray1);
+  background-color: var(--gray8);
 }
 .dark .main-center .posts-box article,
 .dark .main-right .profile-content,
 .dark .main-right .write,
 .dark .search-container .search-box,
 .dark .category-list a:hover li {
-  background-color: rgb(40, 40, 40);
+  background-color: var(--gray6);
 }
 .dark .category-list a[data-selected="true"] li,
 .dark .entered-tag-list li span {
-  color: rgb(237, 237, 237);
-  background-color: rgb(40, 40, 40);
+  color: var(--gray1);
+  background-color: var(--gray6);
 }
 .dark .posts-box .post-tag {
-  background-color: rgb(46, 46, 46);
+  background-color: var(--gray5);
 }
 .dark .main-center .posts-box article:hover,
 .dark .main-right .write:hover {
-  box-shadow: 0 10px 15px -3px rgb(0 0 0);
+  box-shadow: 0 10px 15px -3px black;
 }
 
 .light {
-  color: rgb(23, 23, 23);
-  background-color: rgb(248, 248, 248);
+  color: var(--gray9);
+  background-color: var(--gray0);
 }
 #dark-light-toggle:hover {
   cursor: pointer;
@@ -118,7 +134,6 @@ main {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1.5rem;
-  height: 2000px; /*임시 높이 */
 }
 
 /* 검색 영역 */
@@ -131,7 +146,7 @@ main {
 .search-container .search-box {
   border: none;
   border-radius: 1.25rem;
-  background-color: hsl(0, 0%, 93%);
+  background-color: var(--gray1);
   width: 100%;
   padding: 0.75rem 1.25rem;
   outline-style: none;
@@ -145,22 +160,29 @@ main {
   margin: 1rem 0;
 }
 .entered-tag-list li {
+  position: relative;
   margin: 0.5rem;
   padding: 0.5rem 1rem 0.5rem 0.5rem;
-  background-color: hsl(0, 0%, 93%);
+  background-color: var(--gray1);
   border-radius: 1rem;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .entered-tag-list li:hover {
   filter: invert(100%);
   font-weight: 800;
+  padding-right: 2rem;
 }
-.entered-tag-list li:hover::after {
-  content: "\00d7"; /* x */
+.entered-tag-list li .x-button {
+  display: none;
+}
+/* hover시 x 표시*/
+.entered-tag-list li:hover .x-button {
+  top: 1px;
+  right: 0.5rem;
+  position: absolute;
+  font-size: 1.5rem;
   opacity: 100;
   display: inline-block;
-  height: 0;
-  width: 0;
   padding-left: 0.5rem;
   cursor: pointer;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -178,7 +200,7 @@ main {
   display: none;
 }
 .main-center .posts-box article:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px var(--light_box_shadow1), 0 4px 6px -2px var(--light_box_shadow2);
 }
 .main-center .post-title {
   font-size: 1.25rem;
@@ -187,19 +209,19 @@ main {
 }
 .main-center .post-date {
   font-size: 0.75rem;
-  color: hsl(0, 0%, 52.3%);
+  color: var(--gray2);
   margin-bottom: 1rem;
 }
 .main-center .post-summary {
   font-size: 1rem;
   margin: 1rem 0;
-  color: rgb(140, 140, 140);
+  color: var(--gray2);
 }
 .main-center .post-tag {
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;
-  color: rgb(126, 126, 126);
-  background-color: hsl(0, 0%, 93%);
+  color: var(--gray4);
+  background-color: var(--gray1);
   border-radius: 1rem;
 }
 
@@ -216,14 +238,14 @@ main {
   border-radius: 0.75rem;
 }
 .category-list a {
-  color: hsl(0, 0%, 52.3%);
+  color: var(--gray3);
 }
 .category-list a:hover li {
-  background-color: hsl(0, 0%, 93%);
+  background-color: var(--gray1);
 }
 .category-list a[data-selected="true"] li {
-  color: hsl(0, 59%, 14%);
-  background-color: hsl(0, 0%, 93%);
+  color: var(--gray7);
+  background-color: var(--gray1);
 }
 
 /* 프로필 */
@@ -254,7 +276,7 @@ main {
   margin-bottom: 1rem;
   font-size: 0.875rem;
   line-height: 1.25rem;
-  color: hsl(0, 0%, 43.5%);
+  color: var(--gray4);
 }
 
 /* 글쓰기 */
@@ -269,5 +291,5 @@ main {
   margin-bottom: 2rem;
 }
 .main-right .write:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px var(--light_box_shadow1), 0 4px 6px -2px var(--light_box_shadow2);
 }

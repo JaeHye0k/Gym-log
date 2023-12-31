@@ -1,8 +1,11 @@
-<a>
-  <article>
-    <h2 class="post-title">CSS</h2>
-    <div class="post-date">날짜</div>
-    <p class="post-summary">요약</p>
-    <span class="post-tag">CSS</span>
-  </article>
-</a>
+<li>
+  <a>
+    <article>
+      <h2 class="post-title">CSS</h2>
+      <div class="post-date">날짜</div>
+      <p class="post-summary">요약</p>
+      <span class="post-tag">CSS</span>
+      <span class="post-tag">SCSS</span>
+    </article>
+  </a>
+</li>

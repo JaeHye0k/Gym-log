@@ -42,24 +42,28 @@
             <ul class="entered-tag-list"></ul>
           </div>
         </div>
-        <div class="posts-box">
-          <a>
-            <article data-filtered="true">
-              <h2 class="post-title">제목</h2>
-              <div class="post-date">날짜</div>
-              <p class="post-summary">요약</p>
-              <span class="post-tag">HTML</span>
-            </article>
-          </a>
-          <a>
-            <article data-filtered="true">
-              <h2 class="post-title">제목</h2>
-              <div class="post-date">날짜</div>
-              <p class="post-summary">요약</p>
-              <span class="post-tag">CSS</span>
-            </article>
-          </a>
-        </div>
+        <ul class="posts-box">
+          <li>
+            <a>
+              <article data-filtered="true">
+                <h2 class="post-title">제목</h2>
+                <div class="post-date">날짜</div>
+                <p class="post-summary">요약</p>
+                <span class="post-tag">HTML</span>
+              </article>
+            </a>
+          </li>
+          <li>
+            <a>
+              <article data-filtered="true">
+                <h2 class="post-title">제목</h2>
+                <div class="post-date">날짜</div>
+                <p class="post-summary">요약</p>
+                <span class="post-tag">CSS</span>
+              </article>
+            </a>
+          </li>
+        </ul>
       </div>
       <div class="main-right">
         <div class="sticky">
@@ -81,35 +85,6 @@
       </div>
     </main>
     <script src="dynamic_UI.js" type="text/javascript"></script>
-    <script>
-      // // 태그 입력 시
-      // const searchBox = document.querySelector(".search-box");
-      // let allArticle = [...document.querySelector(".posts-box").querySelectorAll("article")];
-      // var tagArr = [];
-      // var tagFilter = [];
-      // function handle(e) {
-      //   let tag = searchBox.value;
-      //   // 입력값이 공백이 아니면서 엔터를 눌렀을 때
-      //   if (tag && e.keyCode === 13) {
-      //     tag = searchBox.value;
-      //     document.querySelector(".entered-tags").dataset.entered = "true";
-      //     // 기입한 태그 생성
-      //     var li = document.createElement("li");
-      //     var span = li.appendChild(document.createElement("span"));
-      //     span.appendChild(document.createTextNode(tag));
-      //     var innerSpan = span.appendChild(document.createElement("span"));
-      //     innerSpan.appendChild(document.createTextNode("x"));
-      //     innerSpan.classList.add("delete-tag");
-      //     document.querySelector(".entered-tag-list").appendChild(li);
-      //     searchBox.value = "";
-      //     tagArr.push(tag);
-      //     filteredArticle = [...document.querySelector(".posts-box").querySelectorAll("article")].filter((v) => tagArr.includes(v.querySelector(".post-tag").innerText));
-      //     allArticle.forEach((v) => {
-      //       if (filteredArticle.includes(v)) v.dataset.filtered = "true";
-      //       else v.dataset.filtered = "false";
-      //     });
-      //   }
-      // }
-    </script>
+    <script></script>
   </body>
 </html>
