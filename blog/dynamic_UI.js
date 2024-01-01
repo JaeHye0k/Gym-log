@@ -63,11 +63,19 @@ function handle(e) {
     searchBox.value = "";
     // 태그에 해당하는 article만 표시
     enteredTags.push(tagName);
+<<<<<<< HEAD
     lowerEnteredTags = enteredTags.map((tag) => tag.toLowerCase());
     allArticles.forEach((article) => {
       var postTags = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
       var lowerPostTags = postTags.map((tag) => tag.toLowerCase());
       if (lowerEnteredTags.some((tag) => lowerPostTags.includes(tag))) article.dataset.filtered = "true";
+=======
+lowerEnteredTags = enteredTags.map((tag) => tag.toLowerCase());
+allArticles.forEach((article) => {
+  var postTags = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
+  var lowerPostTags = postTags.map((tag) => tag.toLowerCase());
+  if (lowerEnteredTags.some((tag) => lowerPostTags.includes(tag))) article.dataset.filtered = "true";
+>>>>>>> 28176bd5403f44c5d20a2d37228e8a4a349175ad
       else article.dataset.filtered = "false";
     });
   }
@@ -102,17 +110,26 @@ listElm.onclick = function (e) {
     // 포스팅 영역에 삭제된 태그 반영
     var index = enteredTags.indexOf(e.target.previousElementSibling.innerText);
     enteredTags.splice(index, 1);
+<<<<<<< HEAD
     lowerEnteredTags = enteredTags.map((tag) => tag.toLowerCase());
-
+=======
+>>>>>>> lowerEnteredTags = enteredTags.map((tag) => tag.toLowerCase()); 28176bd5403f44c5d20a2d37228e8a4a349175ad
+    
     if (enteredTags.length < 1) {
       allArticles.forEach((element) => {
         element.dataset.filtered = "true";
       });
     } else {
       allArticles.forEach((article) => {
+<<<<<<< HEAD
         var postTags = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
         var lowerPostTags = postTags.map((tag) => tag.toLowerCase());
         if (lowerEnteredTags.some((tag) => lowerPostTags.includes(tag))) article.dataset.filtered = "true";
+=======
+var postTags = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
+var lowerPostTags = postTags.map((tag) => tag.toLowerCase());
+if (lowerEnteredTags.some((tag) => lowerPostTags.includes(tag))) article.dataset.filtered = "true";
+>>>>>>> 28176bd5403f44c5d20a2d37228e8a4a349175ad
         else article.dataset.filtered = "false";
       });
     }
