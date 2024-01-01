@@ -42,14 +42,13 @@ let list = document.querySelector(".category-list").children;
 // 태그 입력 시
 const searchBox = document.querySelector(".search-box");
 let allArticles = [...document.querySelectorAll(".posts-box article")];
-var tagArr = [];
-var filteredArticles = [];
+let enteredTags = [];
+let filteredArticles = [];
 function handle(e) {
   var tagName = searchBox.value;
   // 입력값이 공백이 아니면서 엔터를 눌렀을 때
   if (tagName && e.keyCode === 13) {
     tagName = searchBox.value;
-    // 태그 영역 활성화
     document.querySelector(".entered-tags").dataset.entered = "true";
     // 기입한 태그 생성
     var li = document.createElement("li");
@@ -63,11 +62,11 @@ function handle(e) {
     // 검색 창 비우기
     searchBox.value = "";
     // 태그에 해당하는 article만 표시
-    tagArr.push(tagName);
-    filteredArticles = allArticles.filter((article) => tagArr.includes(article.querySelector(".post-tag").innerText));
-    allArticles.forEach((element) => {
-      if (filteredArticles.includes(element)) element.dataset.filtered = "true";
-      else element.dataset.filtered = "false";
+    enteredTags.push(tagName);
+    allArticles.forEach((article) => {
+      var postTags = [...article.querySelectorAll(".post-tag")].map((a) => a.innerText);
+      if (enteredTags.some((tag) => postTags.includes(tag))) article.dataset.filtered = "true";
+      else article.dataset.filtered = "false";
     });
   }
 }
@@ -93,20 +92,25 @@ var observeDOM = (function () {
   };
 })();
 
-// 기입한 태그를 지우면 포스팅 영역에도 반영
+// 입력한 태그 삭제시
 var listElm = document.querySelector(".entered-tags");
 listElm.onclick = function (e) {
   if (e.target.classList.value === "x-button") {
-    // 태그 영역에서 태그 삭제
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    // 포스팅 영역에 삭제된 태그 반영
+    var index = enteredTags.indexOf(e.target.previousElementSibling.innerText);
+    enteredTags.splice(index, 1);
 
-    // 포스팅 영역에서 삭제된 태그 반영
-    var index = tagArr.indexOf(e.target.previousElementSibling.innerText);
-    tagArr.splice(index, 1);
-    filteredArticles = allArticles.filter((article) => tagArr.includes(article.querySelector(".post-tag").innerText));
-    allArticles.forEach((element) => {
-      if (filteredArticles.includes(element)) element.dataset.filtered = "true";
-      else element.dataset.filtered = "false";
-    });
+    if (enteredTags.length < 1) {
+      allArticles.forEach((element) => {
+        element.dataset.filtered = "true";
+      });
+    } else {
+      allArticles.forEach((article) => {
+        var postTags = [...article.querySelectorAll(".post-tag")].map((a) => a.innerText);
+        if (enteredTags.some((tag) => postTags.includes(tag))) article.dataset.filtered = "true";
+        else article.dataset.filtered = "false";
+      });
+    }
   }
 };
