@@ -1,0 +1,298 @@
+@import url(https://fonts.googleapis.com/css?family=Exo+2:100,200,300,400,500,600,700,800,900);
+
+:root {
+  --gray0: rgb(248, 248, 248);
+  --gray1: rgb(237, 237, 237);
+  --gray2: rgb(140, 140, 140);
+  --gray3: rgb(133, 133, 133);
+  --gray4: rgb(126, 126, 126);
+  --gray5: rgb(46, 46, 46);
+  --gray6: rgb(40, 40, 40);
+  --gray7: rgb(36, 36, 36);
+  --gray8: rgb(28, 28, 28);
+  --gray9: rgb(23, 23, 23);
+
+  --light_box_shadow1: rgba(0, 0, 0, 0.1);
+  --light_box_shadow2: rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--gray9);
+  background-color: var(--gray0);
+  font-family: "Exo 2", "Roboto", "Noto Sans KR", sans-serif;
+}
+/* 헤더 */
+header {
+  height: 3rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+header .header-container {
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+  height: 3rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  margin: -1px;
+}
+.sticky {
+  position: sticky;
+  top: 1rem;
+}
+/* 테마 변경 */
+.toggle-container {
+  display: flex;
+  gap: 0.75rem;
+}
+.dark {
+  color: var(--gray1);
+  background-color: var(--gray8);
+}
+.dark .main-center .posts-box article,
+.dark .main-right .profile-content,
+.dark .main-right .write,
+.dark .search-container .search-box,
+.dark .category-list a:hover li,
+.dark .entered-tag-list li {
+  background-color: var(--gray6);
+}
+.dark .category-list a[data-selected="true"] li,
+.dark .entered-tag-list li span {
+  color: var(--gray1);
+  background-color: var(--gray6);
+}
+.dark .posts-box .post-tag {
+  background-color: var(--gray5);
+}
+.dark .main-center .posts-box article:hover,
+.dark .main-right .write:hover {
+  box-shadow: 0 10px 15px -3px black;
+}
+.dark .entered-tag-list li:hover {
+  font-weight: 600;
+}
+
+.light {
+  color: var(--gray9);
+  background-color: var(--gray0);
+}
+#dark-light-toggle:hover {
+  cursor: pointer;
+}
+
+#english-korean-toggle:hover {
+  cursor: pointer;
+}
+
+/* 포스트 영역 */
+.main-center {
+  grid-column: span 7 / span 7;
+}
+
+main {
+  margin: 0 auto;
+  top: 3rem;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* 검색 영역 */
+.main-center .search-container {
+  margin-bottom: 2rem;
+}
+.main-center .search-title {
+  margin-bottom: 1rem;
+}
+.search-container .search-box {
+  border: none;
+  border-radius: 1.25rem;
+  background-color: var(--gray1);
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  outline-style: none;
+}
+.search-container .entered-tags[data-entered="false"] {
+  display: none;
+}
+.search-container .entered-tags[data-entered="true"] .entered-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.entered-tag-list li {
+  position: relative;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: var(--gray1);
+  border-radius: 1rem;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.entered-tag-list li:hover {
+  filter: invert(100%);
+  font-weight: 800;
+  padding-right: 2rem;
+}
+.entered-tag-list li .x-button {
+  opacity: 0;
+}
+/* hover시 x 표시*/
+.entered-tag-list li:hover .x-button {
+  top: 2px;
+  right: 0.5rem;
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 100;
+  display: inline-block;
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+
+/* 글 영역 */
+.main-center .posts-box article {
+  margin-bottom: 2rem;
+  background-color: white;
+  border-radius: 1.25rem;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 2rem;
+}
+.main-center .posts-box article[data-filtered="false"] {
+  display: none;
+}
+.main-center .posts-box article:hover {
+  box-shadow: 0 10px 15px -3px var(--light_box_shadow1), 0 4px 6px -2px var(--light_box_shadow2);
+}
+.main-center .post-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.main-center .post-date {
+  font-size: 0.75rem;
+  color: var(--gray2);
+  margin-bottom: 1rem;
+}
+.main-center .post-summary {
+  font-size: 1rem;
+  margin: 1rem 0;
+  color: var(--gray2);
+}
+.main-center .post-tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  color: var(--gray4);
+  background-color: var(--gray1);
+  border-radius: 1rem;
+}
+
+/* 카테고리 */
+.main-left {
+  grid-column: span 2 / span 2;
+}
+.category-title {
+  padding-bottom: 0.75rem;
+}
+.category-list li {
+  padding: 0.25rem 1rem;
+  margin: 0.25rem 0;
+  border-radius: 0.75rem;
+}
+.category-list a {
+  color: var(--gray3);
+}
+.category-list a:hover li {
+  background-color: var(--gray1);
+}
+.category-list a[data-selected="true"] li {
+  color: var(--gray7);
+  background-color: var(--gray1);
+}
+
+/* 프로필 */
+.main-right {
+  grid-column: span 3 / span 3;
+}
+.main-right .profile-title {
+  margin-bottom: 1rem;
+}
+.main-right .profile-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  margin-bottom: 2.25rem;
+}
+.main-right .profile-content > div {
+  text-align: center;
+}
+.main-right .name {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-style: italic;
+  font-weight: 700;
+}
+.main-right .role {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--gray4);
+}
+
+/* 글쓰기 */
+.main-right .write {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 2rem;
+}
+.main-right .write:hover {
+  box-shadow: 0 10px 15px -3px var(--light_box_shadow1), 0 4px 6px -2px var(--light_box_shadow2);
+}

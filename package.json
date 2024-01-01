@@ -1,0 +1,12 @@
+{
+  "name": "meta-study",
+  "version": "1.0.0",
+  "description": "블로그 만들기 토이 프로젝트",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "JaeHyeok Lee",
+  "license": "ISC"
+}
