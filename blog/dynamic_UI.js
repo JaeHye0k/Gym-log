@@ -73,29 +73,28 @@ function handle(e) {
   }
 }
 
-// posts-box에서 클릭이벤트 발생시 해당 이벤트가 발생한 노드 삭제
-var observeDOM = (function () {
-  var MutationObserver = window.MutationObserver || window.WebkitMutationObserver;
-  return function (target, callback) {
-    if (!target || target.nodeType !== 1) return;
+// var observeDOM = (function () {
+//   var MutationObserver = window.MutationObserver || window.WebkitMutationObserver;
+//   return function (target, callback) {
+//     if (!target || target.nodeType !== 1) return;
 
-    if (MutationObserver) {
-      // 새로운 observer 정의
-      var mutationObserver = new MutationObserver(callback);
-      // observer가 자식 노드의 변화를 관찰하게 한다
-      mutationObserver.observe(target, { childList: true, subtree: true });
-      return mutationObserver;
-    }
-    // 브라우저가 MutationObserver를 지원하지 않을 경우
-    else if (window.addEventListener) {
-      target.addEventListener("DOMNodeInserted", callback, false);
-      target.addEventListener("DOMNodeRemoved", callback, false);
-    }
-  };
-})();
+//     if (MutationObserver) {
+//       // 새로운 observer 정의
+//       var mutationObserver = new MutationObserver(callback);
+//       // observer가 자식 노드의 변화를 관찰하게 한다
+//       mutationObserver.observe(target, { childList: true, subtree: true });
+//       return mutationObserver;
+//     }
+//     // 브라우저가 MutationObserver를 지원하지 않을 경우
+//     else if (window.addEventListener) {
+//       target.addEventListener("DOMNodeInserted", callback, false);
+//       target.addEventListener("DOMNodeRemoved", callback, false);
+//     }
+//   };
+// })();
 
 // 입력한 태그 삭제시
-var listElm = document.querySelector(".entered-tags");
+const listElm = document.querySelector(".entered-tags");
 listElm.onclick = function (e) {
   if (e.target.classList.value === "x-button") {
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
