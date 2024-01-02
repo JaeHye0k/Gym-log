@@ -3,20 +3,17 @@ const fs = require("fs");
 const url = require("url");
 
 // Read article
-function getArticles() {
-  let dataFolder = "./data";
-  let articles = [];
-  fs.readdir(dataFolder, (err, fileList) => {
-    fileList.forEach((file) => {
-      fs.readFile(`${dataFolder}/${file}`, (err, content) => {
-        articles.push(content);
-      });
+let dataFolder = "./data";
+let articles = [];
+fs.readdir(dataFolder, (err, fileList) => {
+  fileList.forEach((file) => {
+    fs.readFile(`${dataFolder}/${file}`, "utf8", (err, content) => {
+      articles.push(content);
     });
   });
-  return articles;
-}
+});
 
-function templateHTML(articles) {
+function templateHTML() {
   return `
   <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +60,7 @@ function templateHTML(articles) {
         </div>
       </div>
       <ul class="posts-box">
-        ${articles}
+        ${articles.join("")}
       </ul>
     </div>
     <div class="main-right">
@@ -93,8 +90,7 @@ function templateHTML(articles) {
 const app = http.createServer((request, response) => {
   let _url = request.url;
   if (_url === "/") {
-    let articles = getArticles();
-    let template = templateHTML(articles);
+    let template = templateHTML();
     response.writeHead(200);
     response.end(template);
   } else {
