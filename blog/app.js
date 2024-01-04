@@ -75,7 +75,7 @@ function templateHTML() {
             <div class="status-message">나는 지금 개발중</div>
           </div>
         </div>
-        <a class="write-link">
+        <a href="/create" class="write-link">
           <div class="write">글쓰기 ✏️</div>
           <span class="blind">글쓰기</span>
         </a>
@@ -89,15 +89,24 @@ function templateHTML() {
 }
 const app = http.createServer((request, response) => {
   let _url = request.url;
-  if (_url === "/") {
-    let template = templateHTML();
-    response.writeHead(200);
-    response.end(template);
-  } else {
-    fs.readFile(`blog${_url}`, (err, data) => {
+  fs.readdir("./blog", (err, fileList) => {
+    if (_url === "/") {
+      let template = templateHTML();
       response.writeHead(200);
-      response.end(data);
-    });
-  }
+      response.end(template);
+    } else if (fileList.includes(_url.slice(1))) {
+      // 파일 리스트에 있는 파일을 url을 통해 불러올 경우
+      fs.readFile(`blog${_url}`, (err, data) => {
+        response.writeHead(200);
+        response.end(data);
+      });
+    } else if (_url === "/create") {
+      response.writeHead(200);
+      response.end("create");
+    } else {
+      response.writeHead(404);
+      response.end("Not found");
+    }
+  });
 });
-app.listen(80);
+app.listen(8080);
