@@ -272,17 +272,6 @@ main {
   .main-center .reactive-profile-container {
     display: block;
   }
-  .main-center .reactive-write-button {
-    display: flex;
-    justify-content: end;
-  }
-  .main-center .write {
-    display: inline-block;
-    margin-right: 0;
-    padding: 0.5rem;
-    background-color: white;
-    border-radius: 0.5rem;
-  }
   .main-center .profile-content {
     display: flex;
     background-color: white;
@@ -312,6 +301,23 @@ main {
     font-size: 0.875rem;
     line-height: 1.25rem;
     color: var(--gray4);
+  }
+  .main-center .reactive-write-button {
+    display: flex;
+    justify-content: end;
+  }
+  .main-center .write {
+    display: inline-block;
+    font-weight: 600;
+    margin-right: 0;
+    padding: 0.75rem;
+    background-color: white;
+    border-radius: 0.5rem;
+  }
+  .main-center .write:hover {
+    cursor: pointer;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 15px -3px var(--light_box_shadow1), 0 4px 6px -2px var(--light_box_shadow2);
   }
 }
 .main-right {

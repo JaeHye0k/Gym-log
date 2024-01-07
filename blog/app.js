@@ -66,7 +66,7 @@ function templateHTML() {
           </div>
       </div>
       <div class="reactive-write-button">
-          <div class="write">글쓰기 ✏️</div>
+          <a href="/create" class="write">글쓰기 ✏️</a>
           <span class="blind">글쓰기</span>
       </div>
       <div class="search-container">
