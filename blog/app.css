@@ -227,6 +227,10 @@ main {
   background-color: var(--gray1);
   border-radius: 1rem;
 }
+.main-center .reactive-profile-container,
+.main-center .reactive-write-button {
+  display: none;
+}
 
 /* 카테고리 */
 .main-left {
@@ -252,6 +256,64 @@ main {
 }
 
 /* 프로필 */
+@media (max-width: 610px) {
+  .dark .main-center .profile-content {
+    background-color: var(--gray6);
+  }
+  .main-left {
+    grid-column: span 3 / span 3;
+  }
+  .main-right {
+    display: none;
+  }
+  .main-center {
+    grid-column: span 9 / span 9;
+  }
+  .main-center .reactive-profile-container {
+    display: block;
+  }
+  .main-center .reactive-write-button {
+    display: flex;
+    justify-content: end;
+  }
+  .main-center .write {
+    display: inline-block;
+    margin-right: 0;
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+  }
+  .main-center .profile-content {
+    display: flex;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .main-center .profile-left img {
+    width: 90px;
+    height: 90px;
+  }
+  .main-center .profile-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .main-center .profile-title {
+    margin-bottom: 1rem;
+  }
+  .main-center .name {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-style: italic;
+    font-weight: 700;
+  }
+  .main-center .role {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: var(--gray4);
+  }
+}
 .main-right {
   grid-column: span 3 / span 3;
 }

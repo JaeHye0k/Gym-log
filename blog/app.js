@@ -7,7 +7,7 @@ let dataFolder = "./data";
 let articles = [];
 fs.readdir(dataFolder, (err, fileList) => {
   fileList.forEach((file) => {
-    fs.readFile(`${dataFolder}/${file}`, "utf8", (err, content) => {
+    fs.readFile(`${dataFolder}/${file}`, (err, content) => {
       articles.push(content);
     });
   });
@@ -51,6 +51,24 @@ function templateHTML() {
       </div>
     </div>
     <div class="main-center">
+      <div class="reactive-profile-container">
+        <span class="blind">프로필</span>
+        <div class="profile-title">프로필</div>
+        <div class="profile-content">
+          <div class="profile-left">
+            <img src="./avatar.png" alt="프로필 이미지" loading="lazy" decoding="async" />
+          </div>
+          <div class="profile-right"> 
+            <div class="name">이재혁</div>
+            <div class="role">프론트엔드 개발자</div>
+            <div class="status-message">나는 지금 개발중</div>
+          </div>
+          </div>
+      </div>
+      <div class="reactive-write-button">
+          <div class="write">글쓰기 ✏️</div>
+          <span class="blind">글쓰기</span>
+      </div>
       <div class="search-container">
         <span class="blind">검색</span>
         <div class="search-title">검색</div>
@@ -75,7 +93,7 @@ function templateHTML() {
             <div class="status-message">나는 지금 개발중</div>
           </div>
         </div>
-        <a href="/create" class="write-link">
+        <a href="/create" class="write-button">
           <div class="write">글쓰기 ✏️</div>
           <span class="blind">글쓰기</span>
         </a>
