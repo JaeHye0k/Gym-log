@@ -51,7 +51,7 @@ function templateHTML() {
       </div>
     </div>
     <div class="main-center">
-      <div class="reactive-profile-container">
+      <div class="responsive-profile-container">
         <span class="blind">프로필</span>
         <div class="profile-title">프로필</div>
         <div class="profile-content">
@@ -65,7 +65,7 @@ function templateHTML() {
           </div>
           </div>
       </div>
-      <div class="reactive-write-button">
+      <div class="responsive-write-button">
           <a href="/create" class="write">글쓰기 ✏️</a>
           <span class="blind">글쓰기</span>
       </div>
