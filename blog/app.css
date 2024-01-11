@@ -85,6 +85,7 @@ header .header-container {
   color: var(--gray1);
   background-color: var(--gray8);
 }
+
 .dark .main-center .posts-box article,
 .dark .main-right .profile-content,
 .dark .main-right .write,
@@ -301,7 +302,7 @@ main {
 }
 
 /*반응형*/
-@media (max-width: 610px) {
+@media (max-width: 1023px) {
   .dark .main-center .profile-content {
     background-color: var(--gray6);
   }

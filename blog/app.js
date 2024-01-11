@@ -72,7 +72,7 @@ function templateHTML() {
       <div class="search-container">
         <span class="blind">검색</span>
         <div class="search-title">검색</div>
-        <input class="search-box" type="text" placeholder="태그를 입력하세요" onkeypress="handle(event)" />
+        <input class="search-box" type="text" placeholder="태그를 입력하세요"/>
         <div class="entered-tags" data-entered="false">
           <ul class="entered-tag-list"></ul>
         </div>

@@ -39,59 +39,64 @@ let list = document.querySelector(".category-list").children;
   })
 );
 
-// 태그 입력 시
-const searchBox = document.querySelector(".search-box");
 let allArticles = [...document.querySelectorAll(".posts-box article")];
-let enteredTags = [];
-let filteredArticles = [];
-function handle(e) {
-  var tagName = searchBox.value;
-  // 입력값이 공백이 아니면서 엔터를 눌렀을 때
-  if (tagName && e.keyCode === 13) {
-    tagName = searchBox.value;
-    document.querySelector(".entered-tags").dataset.entered = "true";
-    // 기입한 태그 생성
-    var li = document.createElement("li");
-    var span = li.appendChild(document.createElement("span"));
-    span.appendChild(document.createTextNode(tagName));
-    var xButton = document.createElement("span");
-    xButton.innerHTML = "&times;";
-    xButton.setAttribute("class", "x-button");
-    li.appendChild(xButton);
-    document.querySelector(".entered-tag-list").appendChild(li);
-    // 검색 창 비우기
-    searchBox.value = "";
-    // 태그에 해당하는 article만 표시
-    enteredTags.push(tagName);
-    lowerEnteredTags = enteredTags.map((tag) => tag.toLowerCase());
-    allArticles.forEach((article) => {
-      var postTags = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
-      var lowerPostTags = postTags.map((tag) => tag.toLowerCase());
-      if (lowerEnteredTags.some((tag) => lowerPostTags.includes(tag))) article.dataset.filtered = "true";
-      else article.dataset.filtered = "false";
+let enteredTagList = [];
+
+// 태그 검색창에 키 입력 시 태그와 실시간 매칭
+const searchBox = document.querySelector(".search-box");
+searchBox.addEventListener("input", (event) => {
+  let inputData = searchBox.value.toLowerCase();
+  allArticles.forEach((article) => {
+    let tagList = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
+    tagList = tagList.map((tag) => tag.toLowerCase());
+    tagList.forEach((tag) => {
+      if (inputData) {
+        if (tag.includes(inputData)) article.dataset.filtered = "true";
+        else article.dataset.filtered = "false";
+      } else {
+        let enteredTagList = enteredTagList.map((tag) => tag.toLowerCase());
+        if (enteredTagList.some((tag) => tagList.includes(tag))) article.dataset.filtered = "true";
+        else article.dataset.filtered = "false";
+      }
     });
+  });
+});
+
+// 기입한 태그 생성
+const createTagCard = function (inputData) {
+  const li = document.createElement("li");
+  const span = li.appendChild(document.createElement("span"));
+  span.appendChild(document.createTextNode(inputData));
+  const xButton = document.createElement("span");
+  xButton.innerHTML = "&times;";
+  xButton.setAttribute("class", "x-button");
+  li.appendChild(xButton);
+  document.querySelector(".entered-tag-list").appendChild(li);
+};
+
+// 입력한 태그에 해당하는 article만 표시
+const filterArticles = function (enteredTagList) {
+  allArticles.forEach((article) => {
+    let tagList = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
+    tagList = tagList.map((tag) => tag.toLowerCase());
+    if (enteredTagList.some((tag) => tagList.includes(tag))) article.dataset.filtered = "true";
+    else article.dataset.filtered = "false";
+  });
+};
+
+// 태그 입력 후 엔터키 입력시
+searchBox.addEventListener("keydown", (event) => {
+  let inputData = searchBox.value;
+  // 입력값이 공백이 아니면서 엔터를 눌렀을 때
+  if (inputData && event.keyCode === 13) {
+    document.querySelector(".entered-tags").dataset.entered = "true";
+    createTagCard(inputData);
+    searchBox.value = "";
+    enteredTagList.push(inputData);
+    let enteredTagList = enteredTagList.map((tag) => tag.toLowerCase());
+    filterArticles(enteredTagList);
   }
-}
-
-// var observeDOM = (function () {
-//   var MutationObserver = window.MutationObserver || window.WebkitMutationObserver;
-//   return function (target, callback) {
-//     if (!target || target.nodeType !== 1) return;
-
-//     if (MutationObserver) {
-//       // 새로운 observer 정의
-//       var mutationObserver = new MutationObserver(callback);
-//       // observer가 자식 노드의 변화를 관찰하게 한다
-//       mutationObserver.observe(target, { childList: true, subtree: true });
-//       return mutationObserver;
-//     }
-//     // 브라우저가 MutationObserver를 지원하지 않을 경우
-//     else if (window.addEventListener) {
-//       target.addEventListener("DOMNodeInserted", callback, false);
-//       target.addEventListener("DOMNodeRemoved", callback, false);
-//     }
-//   };
-// })();
+});
 
 // 입력한 태그 삭제시
 const listElm = document.querySelector(".entered-tags");
@@ -99,19 +104,19 @@ listElm.onclick = function (e) {
   if (e.target.classList.value === "x-button") {
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
     // 포스팅 영역에 삭제된 태그 반영
-    var index = enteredTags.indexOf(e.target.previousElementSibling.innerText);
-    enteredTags.splice(index, 1);
-    lowerEnteredTags = enteredTags.map((tag) => tag.toLowerCase());
+    let index = enteredTagList.indexOf(e.target.previousElementSibling.innerText);
+    enteredTagList.splice(index, 1);
+    enteredTagList = enteredTagList.map((tag) => tag.toLowerCase());
 
-    if (enteredTags.length < 1) {
+    if (enteredTagList.length < 1) {
       allArticles.forEach((element) => {
         element.dataset.filtered = "true";
       });
     } else {
       allArticles.forEach((article) => {
-        var postTags = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
-        var lowerPostTags = postTags.map((tag) => tag.toLowerCase());
-        if (lowerEnteredTags.some((tag) => lowerPostTags.includes(tag))) article.dataset.filtered = "true";
+        let tagList = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
+        tagList = tagList.map((tag) => tag.toLowerCase());
+        if (enteredTagList.some((tag) => tagList.includes(tag))) article.dataset.filtered = "true";
         else article.dataset.filtered = "false";
       });
     }
