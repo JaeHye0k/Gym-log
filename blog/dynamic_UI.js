@@ -40,26 +40,14 @@ let list = document.querySelector(".category-list").children;
 );
 
 let allArticles = [...document.querySelectorAll(".posts-box article")];
-let enteredTagList = [];
+let enteredTagList = [""];
 
 // 태그 검색창에 키 입력 시 태그와 실시간 매칭
 const searchBox = document.querySelector(".search-box");
 searchBox.addEventListener("input", (event) => {
-  let inputData = searchBox.value.toLowerCase();
-  allArticles.forEach((article) => {
-    let tagList = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
-    tagList = tagList.map((tag) => tag.toLowerCase());
-    tagList.forEach((tag) => {
-      if (inputData) {
-        if (tag.includes(inputData)) article.dataset.filtered = "true";
-        else article.dataset.filtered = "false";
-      } else {
-        let enteredTagList = enteredTagList.map((tag) => tag.toLowerCase());
-        if (enteredTagList.some((tag) => tagList.includes(tag))) article.dataset.filtered = "true";
-        else article.dataset.filtered = "false";
-      }
-    });
-  });
+  let inputData = searchBox.value;
+  enteredTagList.splice(0, 1, inputData.toLowerCase());
+  filterArticles(enteredTagList);
 });
 
 // 기입한 태그 생성
@@ -76,11 +64,16 @@ const createTagCard = function (inputData) {
 
 // 입력한 태그에 해당하는 article만 표시
 const filterArticles = function (enteredTagList) {
-  allArticles.forEach((article) => {
-    let tagList = [...article.querySelectorAll(".post-tag")].map((tag) => tag.innerText);
-    tagList = tagList.map((tag) => tag.toLowerCase());
-    if (enteredTagList.some((tag) => tagList.includes(tag))) article.dataset.filtered = "true";
-    else article.dataset.filtered = "false";
+  let tagList = document.querySelectorAll(".posts-box article .post-tag");
+  tagList.forEach((tag) => {
+    let tagText = tag.innerText.toLowerCase();
+    console.log(tagText);
+    enteredTagList.forEach((enteredTag) => {
+      console.log(enteredTag);
+      if (tagText.includes(enteredTag)) {
+        tag.parentElement.dataset.filtered = "true";
+      } else tag.parentElement.dataset.filtered = "false";
+    });
   });
 };
 
@@ -93,7 +86,7 @@ searchBox.addEventListener("keydown", (event) => {
     createTagCard(inputData);
     searchBox.value = "";
     enteredTagList.push(inputData);
-    let enteredTagList = enteredTagList.map((tag) => tag.toLowerCase());
+    enteredTagList = enteredTagList.map((tag) => tag.toLowerCase());
     filterArticles(enteredTagList);
   }
 });
