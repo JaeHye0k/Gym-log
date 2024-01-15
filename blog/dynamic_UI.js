@@ -55,35 +55,31 @@ const createTagCard = function (inputData) {
 
 // 입력한 태그에 해당하는 article만 표시
 const filterArticles = function (inputData) {
-  console.log(initial);
   inputData = inputData.toLowerCase(); // 대소문자 구별 X
-  for (let tag of allTags) {
-    // 초기 상태일 경우 입력 태그와 일치하는 article을 제외한 모든 article을 숨긴다.
-    if (initial) {
-      tag.parentElement.dataset.filtered = "false";
+  allArticles.forEach((article) => {
+    let tags = article.querySelectorAll(".post-tag");
+    for (let tag of tags) {
+      // 초기 상태일 경우 입력 태그와 일치하는 article을 제외한 모든 article을 숨긴다.
+      if (initial) {
+        tag.parentElement.dataset.filtered = "false";
+      }
+      // 입력한 태그를 포함하는 모든 article요소를 화면에 표시한다.
+      if (tag.innerText.toLowerCase().includes(inputData)) {
+        tag.parentElement.dataset.filtered = "true";
+        break;
+      }
     }
-    console.log(tag.innerText.toLowerCase().includes(inputData));
-    // 입력한 태그를 포함하는 모든 article요소를 화면에 표시한다.
-    if (tag.innerText.toLowerCase().includes(inputData)) tag.parentElement.dataset.filtered = "true";
-  }
-  // allTags.forEach((tag) => {
-  //   // 초기 상태일 경우 입력 태그와 일치하는 article을 제외한 모든 article을 숨긴다.
-  //   if (initial) {
-  //     tag.parentElement.dataset.filtered = "false";
-  //   }
-  //   console.log(tag.innerText.toLowerCase().includes(inputData));
-  //   // 입력한 태그를 포함하는 모든 article요소를 화면에 표시한다.
-  //   if (tag.innerText.toLowerCase().includes(inputData)) tag.parentElement.dataset.filtered = "true";
-  // });
+  });
 };
 
-// 태그 검색창에 키 입력 시 태그와 실시간 매칭
+// 태그 검색창에 키 입력 시 태그와 실시간 매칭: O(N), N=태그의 총 개수
 searchBox.addEventListener("input", (event) => {
   let inputData = searchBox.value;
+  if (inputData === "") initial = true;
   filterArticles(inputData);
 });
 
-// searchBox에 태그를 입력하고 엔터를 누를 시
+// searchBox에 태그를 입력하고 엔터를 누를 시: O(N), N=태그의 총 개수
 searchBox.addEventListener("keydown", (event) => {
   let inputData = searchBox.value;
   if (inputData && event.keyCode === 13) {
