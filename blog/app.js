@@ -29,7 +29,7 @@ function templateHTML() {
 <body data-theme="light">
   <header>
     <div class="header-container">
-      <a href=""><div>Meta-log</div></a>
+      <a href=""><div>Gym-log</div></a>
       <nav class="toggle-container">
         <div id="dark-light-toggle">☀️</div>
         <div id="english-korean-toggle">한국어</div>
@@ -60,8 +60,8 @@ function templateHTML() {
           </div>
           <div class="profile-right"> 
             <div class="name">이재혁</div>
-            <div class="role">프론트엔드 개발자</div>
-            <div class="status-message">나는 지금 개발중</div>
+            <div class="role">운동하는 개발자</div>
+            <div class="status-message">building code and body</div>
           </div>
           </div>
       </div>
@@ -89,8 +89,8 @@ function templateHTML() {
           <div class="profile-content">
             <img src="./avatar.png" alt="프로필 이미지" loading="lazy" decoding="async" />
             <div class="name">이재혁</div>
-            <div class="role">프론트엔드 개발자</div>
-            <div class="status-message">나는 지금 개발중</div>
+            <div class="role">운동하는 개발자</div>
+            <div class="status-message">building code and body</div>
           </div>
         </div>
         <a href="/create" class="write-button">
