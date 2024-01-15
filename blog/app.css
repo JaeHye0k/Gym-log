@@ -33,6 +33,8 @@ h6 {
   margin: 0;
 }
 button {
+  font-family: inherit;
+  font-size: 1rem;
   background: inherit;
   border: none;
   box-shadow: none;
@@ -99,7 +101,7 @@ header .header-container {
 .dark .main-right .profile-content,
 .dark .main-right .write,
 .dark .search-container .search-box,
-.dark .category-list button:hover li,
+.dark .category-list li:hover,
 .dark .entered-tag-list li {
   background-color: var(--gray6);
 }
@@ -256,8 +258,9 @@ main {
 .category-list button {
   color: var(--gray3);
 }
-.category-list button:hover li {
+.category-list li:hover {
   background-color: var(--gray1);
+  cursor: pointer;
 }
 .category-list li[data-selected="true"] {
   color: var(--gray7);
