@@ -42,11 +42,11 @@ function templateHTML() {
         <span class="blind">카테고리</span>
         <div class="category-title">카테고리</div>
         <ul class="category-list">
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
-          <a data-selected="false"><li>아이템</li></a>
+          <li data-selected="false"><button>아이템</button></li>
+          <li data-selected="false"><button>아이템</button></li>
+          <li data-selected="false"><button>아이템</button></li>
+          <li data-selected="false"><button>아이템</button></li>
+          <li data-selected="false"><button>아이템</button></li>
         </ul>
       </div>
     </div>

@@ -32,6 +32,15 @@ h5,
 h6 {
   margin: 0;
 }
+button {
+  background: inherit;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+}
 ul {
   margin: 0;
   padding: 0;
@@ -90,11 +99,11 @@ header .header-container {
 .dark .main-right .profile-content,
 .dark .main-right .write,
 .dark .search-container .search-box,
-.dark .category-list a:hover li,
+.dark .category-list button:hover li,
 .dark .entered-tag-list li {
   background-color: var(--gray6);
 }
-.dark .category-list a[data-selected="true"] li,
+.dark .category-list li[data-selected="true"],
 .dark .entered-tag-list li span {
   color: var(--gray1);
   background-color: var(--gray6);
@@ -244,13 +253,13 @@ main {
   margin: 0.25rem 0;
   border-radius: 0.75rem;
 }
-.category-list a {
+.category-list button {
   color: var(--gray3);
 }
-.category-list a:hover li {
+.category-list button:hover li {
   background-color: var(--gray1);
 }
-.category-list a[data-selected="true"] li {
+.category-list li[data-selected="true"] {
   color: var(--gray7);
   background-color: var(--gray1);
 }

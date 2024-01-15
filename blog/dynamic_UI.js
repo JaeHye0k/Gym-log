@@ -1,8 +1,11 @@
-// const app = require("./blog/app.js");
-// console.log(app.articles);
+const body = document.querySelector("body");
+const allArticles = [...document.querySelectorAll(".posts-box article")];
+const allTags = document.querySelectorAll(".posts-box .post-tag");
+const searchBox = document.querySelector(".search-box");
+const list = document.querySelector(".category-list").children;
+let initial = true;
 
 // 다크모드 - 라이트 모드
-const body = document.querySelector("body");
 const dark_light_toggle = document.querySelector("#dark-light-toggle");
 dark_light_toggle.addEventListener("click", (event) => {
   if (body.dataset.theme === "light") {
@@ -28,7 +31,6 @@ english_korean_toggle.addEventListener("click", (event) => {
 });
 
 // 카테고리 클릭시
-let list = document.querySelector(".category-list").children;
 [...list].forEach((e) =>
   e.addEventListener("click", (event) => {
     // prettier-ignore
@@ -38,17 +40,6 @@ let list = document.querySelector(".category-list").children;
     e.dataset.selected = JSON.parse(e.dataset.selected) ? "false" : "true";
   })
 );
-
-let allArticles = [...document.querySelectorAll(".posts-box article")];
-let enteredTagList = [""];
-
-// 태그 검색창에 키 입력 시 태그와 실시간 매칭
-const searchBox = document.querySelector(".search-box");
-searchBox.addEventListener("input", (event) => {
-  let inputData = searchBox.value;
-  enteredTagList.splice(0, 1, inputData.toLowerCase());
-  filterArticles(enteredTagList);
-});
 
 // 기입한 태그 생성
 const createTagCard = function (inputData) {
@@ -63,31 +54,44 @@ const createTagCard = function (inputData) {
 };
 
 // 입력한 태그에 해당하는 article만 표시
-const filterArticles = function (enteredTagList) {
-  let tagList = document.querySelectorAll(".posts-box article .post-tag");
-  tagList.forEach((tag) => {
-    let tagText = tag.innerText.toLowerCase();
-    console.log(tagText);
-    enteredTagList.forEach((enteredTag) => {
-      console.log(enteredTag);
-      if (tagText.includes(enteredTag)) {
-        tag.parentElement.dataset.filtered = "true";
-      } else tag.parentElement.dataset.filtered = "false";
-    });
-  });
+const filterArticles = function (inputData) {
+  console.log(initial);
+  inputData = inputData.toLowerCase(); // 대소문자 구별 X
+  for (let tag of allTags) {
+    // 초기 상태일 경우 입력 태그와 일치하는 article을 제외한 모든 article을 숨긴다.
+    if (initial) {
+      tag.parentElement.dataset.filtered = "false";
+    }
+    console.log(tag.innerText.toLowerCase().includes(inputData));
+    // 입력한 태그를 포함하는 모든 article요소를 화면에 표시한다.
+    if (tag.innerText.toLowerCase().includes(inputData)) tag.parentElement.dataset.filtered = "true";
+  }
+  // allTags.forEach((tag) => {
+  //   // 초기 상태일 경우 입력 태그와 일치하는 article을 제외한 모든 article을 숨긴다.
+  //   if (initial) {
+  //     tag.parentElement.dataset.filtered = "false";
+  //   }
+  //   console.log(tag.innerText.toLowerCase().includes(inputData));
+  //   // 입력한 태그를 포함하는 모든 article요소를 화면에 표시한다.
+  //   if (tag.innerText.toLowerCase().includes(inputData)) tag.parentElement.dataset.filtered = "true";
+  // });
 };
 
-// 태그 입력 후 엔터키 입력시
+// 태그 검색창에 키 입력 시 태그와 실시간 매칭
+searchBox.addEventListener("input", (event) => {
+  let inputData = searchBox.value;
+  filterArticles(inputData);
+});
+
+// searchBox에 태그를 입력하고 엔터를 누를 시
 searchBox.addEventListener("keydown", (event) => {
   let inputData = searchBox.value;
-  // 입력값이 공백이 아니면서 엔터를 눌렀을 때
   if (inputData && event.keyCode === 13) {
     document.querySelector(".entered-tags").dataset.entered = "true";
     createTagCard(inputData);
     searchBox.value = "";
-    enteredTagList.push(inputData);
-    enteredTagList = enteredTagList.map((tag) => tag.toLowerCase());
-    filterArticles(enteredTagList);
+    filterArticles(inputData);
+    initial = false;
   }
 });
 
