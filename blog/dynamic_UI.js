@@ -61,18 +61,24 @@ const filterArticles = function (inputData) {
     let tags = article.querySelectorAll(".post-tag");
     for (let tag of tags) {
       let tagText = tag.innerText.toLowerCase();
-      // 입력한 태그를 포함하는 모든 article요소를 화면에 표시한다.
-      if (tagText.includes(inputData) || enteredTagList.includes(tagText)) {
-        tag.parentElement.dataset.filtered = "true";
-        break;
-      } else if (inputData === null && enteredTagList.includes(tagText)) {
-        tag.parentElement.dataset.filtered = "true";
-        break;
-      } else if (inputData === null) {
+      // 입력한 태그에 매칭하는 글만 표시
+      if (tagText.includes(inputData)) {
         tag.parentElement.dataset.filtered = "true";
         break;
       } else {
         tag.parentElement.dataset.filtered = "false";
+      }
+
+      if (enteredTagList.includes(tagText)) {
+        tag.parentElement.dataset.filtered = "true";
+        break;
+      } else {
+        tag.parentElement.dataset.filtered = "false";
+      }
+      //입력된 문자도 없고, entered-tag도 없을 때
+      if (inputData === null && enteredTagList.length === 0) {
+        tag.parentElement.dataset.filtered = "true";
+        break;
       }
     }
   });
