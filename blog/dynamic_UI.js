@@ -54,6 +54,14 @@ const createTagCard = function (inputData) {
   document.querySelector(".entered-tag-list").appendChild(li);
 };
 
+// 일부분이라도 포함되어 있다면 true
+const isIncludePartOfText = function (tagText) {
+  for (let enteredTag of enteredTagList) {
+    if (tagText.includes(enteredTag)) return true;
+  }
+  return false;
+};
+
 // 입력한 태그에 해당하는 article만 표시
 const filterArticles = function (inputData) {
   if (inputData !== null) inputData = inputData.toLowerCase(); // 대소문자 구별 X
@@ -61,15 +69,15 @@ const filterArticles = function (inputData) {
     let tags = article.querySelectorAll(".post-tag");
     for (let tag of tags) {
       let tagText = tag.innerText.toLowerCase();
-      // 입력한 태그에 매칭하는 글만 표시
+      // 입력한 문자에 매칭하는 글 표시
       if (tagText.includes(inputData)) {
         tag.parentElement.dataset.filtered = "true";
         break;
       } else {
         tag.parentElement.dataset.filtered = "false";
       }
-
-      if (enteredTagList.includes(tagText)) {
+      // 입력된 태그에 매칭하는 글 표시
+      if (isIncludePartOfText(tagText)) {
         tag.parentElement.dataset.filtered = "true";
         break;
       } else {
